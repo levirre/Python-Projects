@@ -20,6 +20,21 @@ def printBoard(board) :
 #printBoard(board)
 printBoard(board)
 mark = 'x'
+win = 0
+
+def checkWin(move):
+#   if board['HIGH_L'] == board['HIGH_M'] == board['HIGH_R']:
+#        print(' Player : ' + mark + ' wins')
+#        win = 1
+#        return win
+
+def changePlayer(player):
+    
+    if spot%2 == 0:
+        return 'o'
+    else:
+        return 'x'
+
 for spot in range(9):
     print('turn for ' + mark + ' Turn ' + str(spot) + ' Type a spot' )
     move = input()
@@ -30,19 +45,31 @@ for spot in range(9):
         move = input()
     board[move] = mark
     #check mark based on turn order
-    if board['HIGH_L'] == board['HIGH_M'] == board['HIGH_R']:
-        print(' Player : ' + mark + ' wins')
+    checkWin()
+    if win == 1:
         break
-    if spot%2 == 0:
-        mark = 'o'
-    else:
-        mark = 'x'
+    
+    mark = changePlayer(spot)
     printBoard(board)
     
     #based on move, check winning sets
     #2 winning setson sides 
     #3 winning sets on corners
     #4 winning sets in middle
+
+winning_set = {
+    "HIGH_L": {1: ["HIGH_M","HIGH_R"],2:["MID_M","LOW_R"],3:["MID_L","LOW_L"]},
+
+}
+
+
+
+
+    
+
+
+        
+
 
 
     
