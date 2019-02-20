@@ -9,9 +9,9 @@ board = {
     4:'',5:'',6:'',
     1:'',2:'',3:''
 }
-winning_set = {
-    1: {1,2,3,4,5,7,9}
-}
+winning_set = [
+  {1,2,3},{4,5,6},{7,8,9},{1,5,9},{1,4,7},{2,5,8},{3,6,9},{3,5,7}
+]
 # moves_left = ['HIGH_L','HIGH_M','HIGH_R','MID_L','MID_M','MID_R','LOW_L','LOW_M','LOW_R']
 player_moves = {'x':[],'o':[]}
 def printBoard(board): 
@@ -30,7 +30,7 @@ def printBoard(board):
 #board[placement] = 'x' #replace with x or o based on turn
 #printBoard(board)
 printBoard(board)
-mark = 'x'
+player = 'x'
 win = False
 
 #def checkWin(move):
@@ -47,31 +47,32 @@ def checkWin(curr_move,player):
 #add previous move to player moves
 #remove move from available pool
     #moves_left.remove(curr_move)
-    player_moves[player].append(curr_move)
-    if len(player_moves[player]) < 3:
-        return 
-    if set(player_moves[player]).issubset(winning_set[curr_move]):
-        win = True
-        return win
+  player_moves[player].append(int(curr_move))
+    
+  print(set(player_moves['x']))
+    #get key of winning_set based on current move
+    #loop winning sets based on player moves
+  
+      #check board[curr_move]
+      #check 1 space away based on curr_move
+      #check seccond space
+
+
+    
+  if set(player_moves['x']).issuperset(winning_set[0]):
+      
+    win = True
+    return win
+    
+      
+    
+    
+    
 
 #get move
 #check if player has made move that is within a winning set based on previous moves
 #build all possible winning sets from current move
 #check available sets with current move with only numbers inside moves_left
-
-
-
-
-
-
-
-
-
-        
-            
-    
-
-    
 
 def changePlayer(player):
     if spot%2 == 0:
@@ -80,18 +81,23 @@ def changePlayer(player):
         return 'x'
 
 for spot in range(9):
-    print('turn for ' + mark + ' Turn ' + str(spot) + ' Type a spot' )
+    print('turn for ' + player + ' Turn ' + str(spot) + ' Type a spot' )
     move = input()
     #check if value exists in key. If so, input a different spot
     while board[int(move)]:
         print('Try another spot')
         printBoard(board)
         move = input()
-    board[int(move)] = mark
+    board[int(move)] = player
     #check mark based on turn order
-    checkWin(move,mark)
+    print(win)
+    win = checkWin(move,player)
+    if win:
+      print(player + ' wins')
+      printBoard(board)
+      break
     
-    mark = changePlayer(spot)
+    player = changePlayer(spot)
     printBoard(board)
     
     #based on move, check winning sets
