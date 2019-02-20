@@ -30,11 +30,21 @@ for spot in range(9):
         move = input()
     board[move] = mark
     #check mark based on turn order
+    if board['HIGH_L'] == board['HIGH_M'] == board['HIGH_R']:
+        print(' Player : ' + mark + ' wins')
+        break
     if spot%2 == 0:
         mark = 'o'
     else:
         mark = 'x'
     printBoard(board)
+    
+    #based on move, check winning sets
+    #2 winning setson sides 
+    #3 winning sets on corners
+    #4 winning sets in middle
+
+
     
 
 
