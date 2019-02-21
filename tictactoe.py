@@ -57,12 +57,13 @@ def checkWin(curr_move,player):
       #check 1 space away based on curr_move
       #check seccond space
 
+  print(winning_set[1])
+  for i in range(len(winning_set)):
 
-    
-  if set(player_moves['x']).issuperset(winning_set[0]):
+    if set(player_moves[player]).issuperset(winning_set[i]):
       
-    win = True
-    return win
+      win = True
+      return win
     
       
     
