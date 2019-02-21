@@ -46,7 +46,9 @@ def checkWin(curr_move,player):
 #player_moves['x'].remove('HIGH_L')
 #add previous move to player moves
 #remove move from available pool
-    #moves_left.remove(curr_move)
+  print(curr_move)
+  moves_left.remove(int(curr_move))
+  print(moves_left)
   player_moves[player].append(int(curr_move))
     
   print(set(player_moves['x']))
@@ -56,7 +58,7 @@ def checkWin(curr_move,player):
       #check board[curr_move]
       #check 1 space away based on curr_move
       #check seccond space
-
+  
   print(winning_set[1])
   for i in range(len(winning_set)):
 
@@ -91,7 +93,7 @@ for spot in range(9):
         move = input()
     board[int(move)] = player
     #check mark based on turn order
-    print(win)
+    #print(win)
     win = checkWin(move,player)
     if win:
       print(player + ' wins')
