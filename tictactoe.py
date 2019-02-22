@@ -30,7 +30,7 @@ def printBoard(board):
 #board[placement] = 'x' #replace with x or o based on turn
 #printBoard(board)
 printBoard(board)
-player = 'x'
+
 win = False
 
 #def checkWin(move):
@@ -41,7 +41,7 @@ win = False
 
 
 def checkWin(curr_move,player):
-    
+
 #player_moves[x].append('HIGH_L')
 #player_moves['x'].remove('HIGH_L')
 #add previous move to player moves
@@ -66,25 +66,22 @@ def checkWin(curr_move,player):
       
       win = True
       return win
-    
-      
-    
-    
-    
 
 #get move
 #check if player has made move that is within a winning set based on previous moves
 #build all possible winning sets from current move
 #check available sets with current move with only numbers inside moves_left
-
-def changePlayer(player):
-    if spot%2 == 0:
+def changePlayer(turn):
+    if turn%2 == 0:
         return 'o'
     else:
         return 'x'
-
-for spot in range(9):
-    print('turn for ' + player + ' Turn ' + str(spot) + ' Type a spot' )
+#TODO: Make loop its own function to be called for repeatable games
+def playGame():
+  
+  for turn in range(9):
+    player = changePlayer(turn)
+    print('turn for ' + player + ' Turn ' + str(turn) + ' Type a spot' )
     move = input()
     #check if value exists in key. If so, input a different spot
     while board[int(move)]:
@@ -100,7 +97,7 @@ for spot in range(9):
       printBoard(board)
       break
     
-    player = changePlayer(spot)
+    player = changePlayer(turn)
     printBoard(board)
     
     #based on move, check winning sets
@@ -108,7 +105,7 @@ for spot in range(9):
     #3 winning sets on corners
     #4 winning sets in middle
 
-
+playGame()
 
     
 
